@@ -7,7 +7,7 @@ import Problems from "@/components/problems";
 import Assessment from "@/components/assessment";
 import MathText from "@/components/math-text";
 import StudyFigure from "@/components/lessons/study-figure";
-export default function ChapterLearning({ content }) {
+export default function ChapterLearning({ content, children }) {
   return (
     <>
       <div className="learning-intro content-card">
@@ -199,6 +199,7 @@ export default function ChapterLearning({ content }) {
               </div>
             )}
           </section>
+          {children}
         </div>
       </div>
     </>

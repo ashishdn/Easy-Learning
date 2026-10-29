@@ -45,6 +45,25 @@ async function ChapterDetails({ params }) {
   const position = sequence.findIndex((c) => c.id === chapter.id);
   const previous = sequence[position - 1];
   const next = sequence[position + 1];
+  const navigation = (previous || next) && (
+    <nav className="chapter-pagination" aria-label="অধ্যায় পরিবর্তন">
+      {previous && (
+        <Link
+          className="chapter-pagination-previous"
+          href={chapterUrl(previous)}
+        >
+          <span>আগের অধ্যায়</span>
+          <strong>{previous.title}</strong>
+        </Link>
+      )}
+      {next && (
+        <Link className="chapter-pagination-next" href={chapterUrl(next)}>
+          <span>পরের অধ্যায়</span>
+          <strong>{next.title}</strong>
+        </Link>
+      )}
+    </nav>
+  );
   return (
     <div className="container page-content">
       <Breadcrumbs
@@ -61,7 +80,7 @@ async function ChapterDetails({ params }) {
         {chapter.description}
       </PageHeading>
       {content ? (
-        <ChapterLearning content={content} />
+        <ChapterLearning content={content}>{navigation}</ChapterLearning>
       ) : (
         <div className="content-card upcoming">
           <span className="badge">প্রস্তুতি চলছে</span>
@@ -75,22 +94,6 @@ async function ChapterDetails({ params }) {
           </Button>
         </div>
       )}
-      <nav className="chapter-pagination" aria-label="অধ্যায় পরিবর্তন">
-        {previous ? (
-          <Link href={chapterUrl(previous)}>
-            <span>আগের অধ্যায়</span>
-            <strong>{previous.title}</strong>
-          </Link>
-        ) : (
-          <span />
-        )}
-        {next && (
-          <Link href={chapterUrl(next)}>
-            <span>পরের অধ্যায়</span>
-            <strong>{next.title}</strong>
-          </Link>
-        )}
-      </nav>
     </div>
   );
 }

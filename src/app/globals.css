@@ -86,7 +86,12 @@
   border: 1px solid var(--border);
   border-radius: 10px;
 }
-.chapter-pagination a:last-child {
+.chapter-pagination .chapter-pagination-previous {
+  grid-column: 1;
+  text-align: left;
+}
+.chapter-pagination .chapter-pagination-next {
+  grid-column: 2;
   text-align: right;
 }
 .chapter-pagination span {
@@ -108,6 +113,9 @@
   }
   .chapter-pagination {
     grid-template-columns: 1fr;
+  }
+  .chapter-pagination .chapter-pagination-next {
+    grid-column: 1;
   }
 }
 @theme inline {
